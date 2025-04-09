@@ -1,0 +1,90 @@
+[
+    {
+      "name": "В диапозоне",
+      "artist": "Порнофильмы",
+      "cover": "temp/audio/img/17.jpg",
+      "source": "temp/audio/mp3/18.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "Мертвый Анархист",
+      "artist": "Король И Шут",
+      "cover": "temp/audio/img/16.jpg",
+      "source": "temp/audio/mp3/16.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "Охотник",
+      "artist": "Король И Шут",
+      "cover": "temp/audio/img/16.jpg",
+      "source": "temp/audio/mp3/17.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "Лесник",
+      "artist": "Король И Шут",
+      "cover": "temp/audio/img/16.jpg",
+      "source": "temp/audio/mp3/15.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "ЧСВ",
+      "artist": "СЕРЕГА ПИРАТ,Lida",
+      "cover": "temp/audio/img/15.jpg",
+      "source": "temp/audio/mp3/14.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "Я так соскуфился",
+      "artist": "Порнофильмы",
+      "cover": "temp/audio/img/17.jpg",
+      "source": "temp/audio/mp3/19.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "Зомби Апокалипсис",
+      "artist": "СЕРЕГА ПИРАТ, qeqoqeq",
+      "cover": "temp/audio/img/14.jpg",
+      "source": "temp/audio/mp3/13.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": true
+    },
+    {
+      "name": "Тп на аме",
+      "artist": "СЕРЕГА ПИРАТ",
+      "cover": "temp/audio/img/13.jpg",
+      "source": "temp/audio/mp3/12.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": true
+    },
+    {
+      "name": "SICKO MODE",
+      "artist": "Travi$ Scott",
+      "cover": "temp/audio/img/12.jpg",
+      "source": "temp/audio/mp3/11.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "I Wanna Be Your Dog",
+      "artist": "Jhon McCrea",
+      "cover": "temp/audio/img/10.jpg",
+      "source": "temp/audio/mp3/10.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "Lose Yourself",
+      "artist": "Eminem",
+      "cover": "https://static.hitmcdn.com/covers/a/d8a/4e5/4351.jpg",
+      "source": "temp/audio/mp3/mp20.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    }
+  ]
