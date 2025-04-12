@@ -2,6 +2,7 @@
     {
       "name": "В диапозоне",
       "artist": "Порнофильмы",
+      "album": "В диапозоне между отчанием и надеждой",
       "cover": "temp/audio/img/17.jpg",
       "source": "temp/audio/mp3/18.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -10,6 +11,7 @@
     {
       "name": "Мертвый Анархист",
       "artist": "Король И Шут",
+      "album": "Король и Шут Оффициальный саундтрек",
       "cover": "temp/audio/img/16.jpg",
       "source": "temp/audio/mp3/16.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -18,6 +20,7 @@
     {
       "name": "Охотник",
       "artist": "Король И Шут",
+      "album": "Король и Шут Оффициальный саундтрек",
       "cover": "temp/audio/img/16.jpg",
       "source": "temp/audio/mp3/17.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -26,6 +29,7 @@
     {
       "name": "Лесник",
       "artist": "Король И Шут",
+      "album": "Король и Шут Оффициальный саундтрек",
       "cover": "temp/audio/img/16.jpg",
       "source": "temp/audio/mp3/15.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -34,6 +38,7 @@
     {
       "name": "ЧСВ",
       "artist": "СЕРЕГА ПИРАТ,Lida",
+      "album": "ЧСВ",
       "cover": "temp/audio/img/15.jpg",
       "source": "temp/audio/mp3/14.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -42,6 +47,7 @@
     {
       "name": "Я так соскуфился",
       "artist": "Порнофильмы",
+      "album": "В диапозоне между отчанием и надеждой",
       "cover": "temp/audio/img/17.jpg",
       "source": "temp/audio/mp3/19.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -50,6 +56,7 @@
     {
       "name": "Зомби Апокалипсис",
       "artist": "СЕРЕГА ПИРАТ, qeqoqeq",
+      "album": "Зомби Апокалипсис",
       "cover": "temp/audio/img/14.jpg",
       "source": "temp/audio/mp3/13.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -58,6 +65,7 @@
     {
       "name": "Тп на аме",
       "artist": "СЕРЕГА ПИРАТ",
+      "album": "Тп на аме",
       "cover": "temp/audio/img/13.jpg",
       "source": "temp/audio/mp3/12.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -66,6 +74,7 @@
     {
       "name": "SICKO MODE",
       "artist": "Travi$ Scott",
+      "album": "SICKO MODE",
       "cover": "temp/audio/img/12.jpg",
       "source": "temp/audio/mp3/11.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -74,6 +83,7 @@
     {
       "name": "I Wanna Be Your Dog",
       "artist": "Jhon McCrea",
+      "album": "Cruella (Original Motion Picture Soundtrack)",
       "cover": "temp/audio/img/10.jpg",
       "source": "temp/audio/mp3/10.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
@@ -82,8 +92,45 @@
     {
       "name": "Lose Yourself",
       "artist": "Eminem",
+      "album": "Lose Yourself",
       "cover": "https://static.hitmcdn.com/covers/a/d8a/4e5/4351.jpg",
       "source": "temp/audio/mp3/mp20.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "Mockingbird",
+      "artist": "Eminem",
+      "album": "Encore",
+      "cover": "temp/audio/img/Encore.jpg",
+      "source": "temp/audio/mp3/mp21.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": true
+    },
+    {
+      "name": "В туалете клуба",
+      "artist": "Neverlove",
+      "album": "NU GLAM",
+      "cover": "temp/audio/img/Nu_glam.jpg",
+      "source": "temp/audio/mp3/mp22.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "На заводе",
+      "artist": "Neverlove, Йорш",
+      "album": "NU GLAM",
+      "cover": "temp/audio/img/Nu_glam.jpg",
+      "source": "temp/audio/mp3/mp23.mp3",
+      "url": "https://youtu.be/xFYQQPAOz7Y",
+      "favorited": false
+    },
+    {
+      "name": "SLAY",
+      "artist": "Neverlove, b3brina",
+      "album": "NU GLAM",
+      "cover": "temp/audio/img/Nu_glam.jpg",
+      "source": "temp/audio/mp3/mp24.mp3",
       "url": "https://youtu.be/xFYQQPAOz7Y",
       "favorited": false
     }
