@@ -290,6 +290,17 @@
     margin: 0 -10px;
   }
 
+  .track-artist a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .track-artist a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+  }
+
   .tracks-slider {
     display: flex;
     transition: transform 0.3s ease;

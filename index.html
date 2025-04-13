@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EnigmaMusic</title>
-  <link rel="shortcut icon" href="logo.svg">
+  <link rel="shortcut icon" href="logo.svg" type="image/svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="temp/style/main.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -86,10 +86,15 @@
             </div>
 
             <div class="all-tracks">
-              <h3>Все треки</h3>
+              <h3>Все треки <span v-if="tracks.length">
+                  ({{ formatCount(tracks.length, ['трек', 'трека', 'треков']) }})
+                </span></h3>
               <div class="tracks-list" v-if="tracks.length > 0">
                 <div class="track" v-for="(track, index) in tracks" :key="'track-'+index" @click="playTrack(track.id)"
-                  :class="{ 'active': track.id === currentTrack?.id }">
+                  :class="{ 
+                  'active': track.id === currentTrack?.id,
+                  'playing': track.id === currentTrack?.id && isPlaying
+                }">
                   <div class="track-number">{{ index + 1 }}</div>
                   <div class="track-info">
                     <div class="track-cover">
@@ -97,7 +102,9 @@
                     </div>
                     <div class="track-details">
                       <div class="track-name">{{ track.name }}</div>
-                      <div class="track-artist">{{ track.artist }}</div>
+                      <div class="track-artist">
+                        <a href="#" @click.prevent="searchArtist(track.artist)">{{ track.artist }}</a>
+                      </div>
                     </div>
                   </div>
                   <div class="track-duration">
@@ -148,7 +155,7 @@
           </div>
 
           <!-- Медиатека -->
-          <div class="page-content" v-if="activeTab === 'library' && !isLoading">
+          <div class="page-content" v-if="activeTab === 'library'">
             <div class="favorite-tracks">
               <h3>Любимые треки</h3>
               <div class="tracks-list" v-if="favoriteTracks.length > 0">
@@ -163,10 +170,10 @@
                       <div class="track-name">{{ track.name }}</div>
                       <div class="track-artist">{{ track.artist }}</div>
                     </div>
-                    <i class="fas fa-heart" :class="{ 'active': currentTrack.favorited }"
-                      @click="toggleFavorite(currentTrack.id)"></i>
                   </div>
                   <div class="track-duration">
+                    <i class="fas fa-heart" :class="{ 'active': currentTrack.favorited }"
+                      @click="toggleFavorite(currentTrack.id)"></i>
                     <span class="track-album">{{ track.album }} </span>
                     {{ track.duration || '--:--' }}
                   </div>
