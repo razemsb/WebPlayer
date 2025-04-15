@@ -718,6 +718,11 @@ new Vue({
     await this.loadTracks();
     window.addEventListener('resize', this.calculateMaxSlide);
     this.initFavoriteAlbums();
+    
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.calculateMaxSlide);
