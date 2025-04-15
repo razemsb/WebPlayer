@@ -72,7 +72,7 @@ git clone https://github.com/razemsb/WebPlayer.git
 
 ## 👥 Авторы
 
-- Автор проекта - [Ваше имя](https://github.com/razemsb)
+- Автор проекта - [razemsb](https://github.com/razemsb)
 
 ## 🙏 Благодарности
 
