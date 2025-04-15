@@ -6,9 +6,9 @@
   <title>EnigmaMusic</title>
   <link rel="shortcut icon" href="logo.svg" type="image/svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="temp/style/main.css">
+  <link rel="stylesheet" href="src/style/main.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  <script src="temp/App/Main.vue" defer></script>
+  <script src="src/App/Main.vue" defer></script>
 </head>
 <body>
   <div id="app">
@@ -31,6 +31,27 @@
           <div class="menu-item" :class="{active: activeTab === 'library'}" @click="activeTab = 'library'">
             <i class="fas fa-heart"></i>
             <span>Моя медиатека</span>
+          </div>
+        </div>
+
+        <div class="favorite-albums" v-if="favoriteAlbums.length > 0">
+          <h3>Любимые альбомы</h3>
+          <div class="favorite-albums-list">
+            <div class="favorite-album-item" 
+                 v-for="album in favoriteAlbums" 
+                 :key="'fav-album-'+album.album_id"
+                 @click="showAlbumTracks(album)">
+              <div class="favorite-album-cover" @click="showAlbumTracks(album)">
+                <img :src="album.cover" :alt="album.name">
+                <div class="favorite-album-overlay" @click.stop="playAlbum(album)">
+                  <i class="fas" :class="isAlbumPlaying(album) ? 'fa-pause' : 'fa-play'"></i>
+                </div>
+              </div>
+              <div class="favorite-album-info" @click="showAlbumTracks(album)">
+                <div class="favorite-album-name">{{ album.name }}</div>
+                <div class="favorite-album-artist">{{ album.artist }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -93,7 +114,7 @@
                 </div>
                 <div class="tracks-list">
                   <div class="track" v-for="(track, index) in tracks" :key="track.id">
-                    <div class="track-content" @click="playTrack(track.id)" :class="{ 'active': track.id === currentTrack?.id }">
+                    <div class="track-content" @click="playTrack(track.id)" :class="{ 'active': track.id === currentTrack?.id && isPlaying }">
                       <div class="track-number">{{ index + 1 }}</div>
                       <div class="track-info">
                         <div class="track-cover">
@@ -215,9 +236,20 @@
                 <img :src="currentAlbum.cover" :alt="currentAlbum.name">
               </div>
               <div class="album-info">
-                <h1>{{ currentAlbum.name }}</h1>
+                <div class="album-title">
+                  <h1>{{ currentAlbum.name }}</h1>
+                  <i class="fas fa-heart" 
+                     :class="{ active: isAlbumFavorite(currentAlbum) }"
+                     @click="toggleFavoriteAlbum(currentAlbum)"></i>
+                </div>
                 <h2>{{ currentAlbum.artist }}</h2>
-                <p>{{ currentAlbum.tracks_count }} {{ declension(currentAlbum.tracks_count, ['трек', 'трека', 'треков']) }}</p>
+                <p>{{ getAlbumTracksCount(currentAlbum.name) }} {{ declension(getAlbumTracksCount(currentAlbum.name), ['трек', 'трека', 'треков']) }}</p>
+                <div class="album-actions">
+                  <button class="play-album-btn" @click="playAlbum(currentAlbum)">
+                    <i class="fas fa-play"></i>
+                    <span>Воспроизвести</span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -258,7 +290,13 @@
 
           <div class="page-content" v-if="activeTab === 'library'">
             <div class="favorite-tracks">
-              <h3>Любимые треки</h3>
+              <div class="favorite-header">
+                <h3>Любимые треки</h3>
+                <button class="play-all-btn" @click="playAllFavorites">
+                  <i class="fas fa-play"></i>
+                  <span>Воспроизвести все</span>
+                </button>
+              </div>
               <div class="tracks-container">
                 <div class="tracks-header">
                   <div class="header-index">#</div>

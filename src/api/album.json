@@ -2,7 +2,7 @@
     {
         "album_id": "1",
         "tracks_id": "13, 14, 15",
-        "cover": "temp/audio/img/Nu_glam.jpg",
+        "cover": "src/audio/img/Nu_glam.jpg",
         "artist": "Neverlove"
     }
 ]

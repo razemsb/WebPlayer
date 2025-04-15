@@ -896,7 +896,24 @@
   }
   
   .track.active {
-    background: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .track.active .track-name,
+  .track.active .track-artist {
+    color: #1db954;
+  }
+  
+  .track.active .track-number {
+    color: #1db954;
+  }
+  
+  .track.active .track-duration {
+    color: #1db954;
+  }
+  
+  .track.active .track-album a {
+    color: #1db954;
   }
   
   .track-number {
@@ -1125,7 +1142,7 @@
   }
   
   .track-actions .fa-heart.active {
-    color: var(--active-color);
+    color: var(--progress-active);
   }
   
   .player-controls {
@@ -1520,4 +1537,217 @@
 
 .recommendations .albums-header {
   margin-top: 48px;
+}
+
+.favorite-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.play-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.play-all-btn:hover {
+  background-color: #1ed760;
+}
+
+.play-all-btn i {
+  font-size: 16px;
+}
+
+.album-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.album-title h1 {
+  margin: 0;
+}
+
+.album-title .fa-heart {
+  font-size: 24px;
+  color: #b3b3b3;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.album-title .fa-heart:hover {
+  color: #1db954;
+  transform: scale(1.1);
+}
+
+.album-title .fa-heart.active {
+  color: #1db954;
+}
+
+.album-actions {
+  margin-top: 24px;
+}
+
+.play-album-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.play-album-btn:hover {
+  background-color: #1ed760;
+  transform: scale(1.05);
+}
+
+.play-album-btn i {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .album-title {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .album-title .fa-heart {
+    font-size: 20px;
+  }
+
+  .play-album-btn {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+}
+
+.favorite-albums {
+  margin-top: 32px;
+  padding: 0 8px;
+}
+
+.favorite-albums h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #b3b3b3;
+  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+}
+
+.favorite-albums-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.favorite-album-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.favorite-album-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.favorite-album-cover {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.favorite-album-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.favorite-album-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.favorite-album-item:hover .favorite-album-overlay {
+  opacity: 1;
+}
+
+.favorite-album-overlay:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.favorite-album-overlay i {
+  color: white;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.favorite-album-overlay:hover i {
+  transform: scale(1.2);
+}
+
+.favorite-album-info {
+  min-width: 0;
+}
+
+.favorite-album-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.favorite-album-artist {
+  font-size: 12px;
+  color: #b3b3b3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .favorite-albums {
+    display: none;
+  }
+}
+
+.album-playing-indicator {
+  display: none;
 }

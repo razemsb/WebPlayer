@@ -24,11 +24,16 @@ new Vue({
       searchQuery: "",
       recentTracks: [],
       favoriteTracks: [],
+      favoriteAlbums: [],
       isLoading: true,
       playQueue: [],
       isRepeat: false,
       isRandom: false,
       isDraggingVolume: false,
+      isPlayingFromAlbum: false,
+      albumTracksQueue: [],
+      isPlayingFromFavorites: false,
+      favoriteTracksQueue: []
     };
   },
   watch: {
@@ -116,7 +121,7 @@ new Vue({
 
     async loadTracks() {
       try {
-        const response = await fetch('temp/api/track.json');
+        const response = await fetch('src/api/track.json');
         const tracks = await response.json();
         
         this.tracks = tracks.map(track => ({
@@ -227,11 +232,22 @@ new Vue({
     },
 
     playAlbum(album) {
-      const tracks = this.tracks.filter(t => album.tracks_ids.includes(t.id));
-      if (tracks.length === 0) return;
+      const albumTracks = this.tracks.filter(track => track.album === album.name);
+      if (albumTracks.length === 0) return;
+
+      if (this.currentTrack && this.currentTrack.album === album.name) {
+        if (this.isPlaying) {
+          this.pause();
+        } else {
+          this.play();
+        }
+        return;
+      }
       
-      this.currentTrack = tracks[0];
-      this.playQueue = tracks.slice(1);
+      this.currentTrack = albumTracks[0];
+      this.playQueue = albumTracks.slice(1);
+      this.isPlayingFromAlbum = true;
+      this.albumTracksQueue = albumTracks;
       this.resetPlayer();
       this.play();
     },
@@ -281,7 +297,6 @@ new Vue({
         if (this.isPlaying) {
           this.pause();
         } else {
-
           this.audio.play().then(() => {
             this.isPlaying = true;
           }).catch(error => {
@@ -293,17 +308,37 @@ new Vue({
       }
 
       if (this.audio) {
-
         this.audio.pause();
         this.isPlaying = false;
       }
 
       this.currentTrack = track;
-      this.currentTrackIndex = this.tracks.indexOf(track);
       this.addToRecent(track);
 
+      if (this.activeTab === 'album-tracks' && this.currentAlbum) {
+        this.isPlayingFromAlbum = true;
+        this.isPlayingFromFavorites = false;
+        this.albumTracksQueue = this.tracks
+          .filter(t => t.album === this.currentAlbum.name)
+          .sort((a, b) => a.id - b.id);
+        const currentIndex = this.albumTracksQueue.findIndex(t => t.id === trackId);
+        this.playQueue = this.albumTracksQueue.slice(currentIndex + 1);
+      } else if (this.activeTab === 'library') {
+        this.isPlayingFromAlbum = false;
+        this.isPlayingFromFavorites = true;
+        this.favoriteTracksQueue = this.favoriteTracks.sort((a, b) => a.id - b.id);
+        const currentIndex = this.favoriteTracksQueue.findIndex(t => t.id === trackId);
+        this.playQueue = this.favoriteTracksQueue.slice(currentIndex + 1);
+      } else {
+        this.isPlayingFromAlbum = false;
+        this.isPlayingFromFavorites = false;
+        this.albumTracksQueue = [];
+        this.favoriteTracksQueue = [];
+        this.playQueue = [];
+      }
+
       this.audio.src = track.source;
-      this.audio.currentTime = 0; 
+      this.audio.currentTime = 0;
       this.audio.play().then(() => {
         this.isPlaying = true;
       }).catch(error => {
@@ -379,23 +414,71 @@ new Vue({
     nextTrack() {
       if (!this.currentTrack) return;
       
-      let nextIndex = this.currentTrackIndex + 1;
-      if (nextIndex >= this.tracks.length) {
-        nextIndex = 0;
+      if (this.isPlayingFromAlbum && this.playQueue.length > 0) {
+        this.currentTrack = this.playQueue[0];
+        this.playQueue = this.playQueue.slice(1);
+        this.resetPlayer();
+        this.play();
+      } else if (this.isPlayingFromAlbum && this.isRepeat) {
+        this.currentTrack = this.albumTracksQueue[0];
+        this.playQueue = this.albumTracksQueue.slice(1);
+        this.resetPlayer();
+        this.play();
+      } else if (this.isPlayingFromFavorites && this.playQueue.length > 0) {
+        this.currentTrack = this.playQueue[0];
+        this.playQueue = this.playQueue.slice(1);
+        this.resetPlayer();
+        this.play();
+      } else if (this.isPlayingFromFavorites && this.isRepeat) {
+        this.currentTrack = this.favoriteTracksQueue[0];
+        this.playQueue = this.favoriteTracksQueue.slice(1);
+        this.resetPlayer();
+        this.play();
+      } else if (!this.isPlayingFromAlbum && !this.isPlayingFromFavorites) {
+        let nextIndex = this.tracks.indexOf(this.currentTrack) + 1;
+        if (nextIndex >= this.tracks.length) {
+          nextIndex = 0;
+        }
+        this.playTrack(this.tracks[nextIndex].id);
       }
-      
-      this.playTrack(this.tracks[nextIndex].id);
     },
 
     prevTrack() {
       if (!this.currentTrack) return;
       
-      let prevIndex = this.currentTrackIndex - 1;
-      if (prevIndex < 0) {
-        prevIndex = this.tracks.length - 1;
+      if (this.isPlayingFromAlbum) {
+        const currentIndex = this.albumTracksQueue.findIndex(t => t.id === this.currentTrack.id);
+        if (currentIndex > 0) {
+          this.currentTrack = this.albumTracksQueue[currentIndex - 1];
+          this.playQueue = this.albumTracksQueue.slice(currentIndex);
+          this.resetPlayer();
+          this.play();
+        } else if (this.isRepeat) {
+          this.currentTrack = this.albumTracksQueue[this.albumTracksQueue.length - 1];
+          this.playQueue = [];
+          this.resetPlayer();
+          this.play();
+        }
+      } else if (this.isPlayingFromFavorites) {
+        const currentIndex = this.favoriteTracksQueue.findIndex(t => t.id === this.currentTrack.id);
+        if (currentIndex > 0) {
+          this.currentTrack = this.favoriteTracksQueue[currentIndex - 1];
+          this.playQueue = this.favoriteTracksQueue.slice(currentIndex);
+          this.resetPlayer();
+          this.play();
+        } else if (this.isRepeat) {
+          this.currentTrack = this.favoriteTracksQueue[this.favoriteTracksQueue.length - 1];
+          this.playQueue = [];
+          this.resetPlayer();
+          this.play();
+        }
+      } else {
+        let prevIndex = this.tracks.indexOf(this.currentTrack) - 1;
+        if (prevIndex < 0) {
+          prevIndex = this.tracks.length - 1;
+        }
+        this.playTrack(this.tracks[prevIndex].id);
       }
-      
-      this.playTrack(this.tracks[prevIndex].id);
     },
 
     toggleRepeat() {
@@ -580,10 +663,61 @@ new Vue({
         this.albumResults = this.getRandomItems(this.albums, 2);
       }
     },
+
+    getAlbumTracksCount(albumName) {
+      return this.tracks.filter(track => track.album === albumName).length;
+    },
+
+    playAllFavorites() {
+      if (this.favoriteTracks.length > 0) {
+        this.playTrack(this.favoriteTracks[0].id);
+      }
+    },
+
+    isAlbumFavorite(album) {
+      return this.favoriteAlbums.some(a => a.album_id === album.album_id);
+    },
+
+    toggleFavoriteAlbum(album) {
+      const index = this.favoriteAlbums.findIndex(a => a.album_id === album.album_id);
+      if (index === -1) {
+        this.favoriteAlbums.push(album);
+      } else {
+        this.favoriteAlbums.splice(index, 1);
+      }
+      this.saveFavoriteAlbums();
+    },
+
+    initFavoriteAlbums() {
+      try {
+        const saved = localStorage.getItem('favoriteAlbums');
+        if (saved) {
+          this.favoriteAlbums = JSON.parse(saved);
+        }
+      } catch (error) {
+        console.error('Ошибка загрузки любимых альбомов:', error);
+      }
+    },
+
+    saveFavoriteAlbums() {
+      try {
+        localStorage.setItem('favoriteAlbums', JSON.stringify(this.favoriteAlbums));
+      } catch (error) {
+        console.error('Ошибка сохранения любимых альбомов:', error);
+      }
+    },
+
+    isAlbumPlaying(album) {
+      return this.isPlaying && 
+             this.currentTrack && 
+             this.currentTrack.album === album.name &&
+             this.isPlayingFromAlbum;
+    },
   },
   async mounted() {
     await this.loadTracks();
     window.addEventListener('resize', this.calculateMaxSlide);
+    this.initFavoriteAlbums();
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.calculateMaxSlide);
