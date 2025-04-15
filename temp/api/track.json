@@ -1,5 +1,6 @@
 [
     {
+      "id": "1",
       "name": "В диапозоне",
       "artist": "Порнофильмы",
       "album": "В диапозоне между отчанием и надеждой",
@@ -9,6 +10,7 @@
       "favorited": false
     },
     {
+      "id": "2",
       "name": "Мертвый Анархист",
       "artist": "Король И Шут",
       "album": "Король и Шут Оффициальный саундтрек",
@@ -18,6 +20,7 @@
       "favorited": false
     },
     {
+      "id": "3",
       "name": "Охотник",
       "artist": "Король И Шут",
       "album": "Король и Шут Оффициальный саундтрек",
@@ -27,6 +30,7 @@
       "favorited": false
     },
     {
+      "id": "4",
       "name": "Лесник",
       "artist": "Король И Шут",
       "album": "Король и Шут Оффициальный саундтрек",
@@ -36,6 +40,7 @@
       "favorited": false
     },
     {
+      "id": "5",
       "name": "ЧСВ",
       "artist": "СЕРЕГА ПИРАТ,Lida",
       "album": "ЧСВ",
@@ -45,6 +50,7 @@
       "favorited": false
     },
     {
+      "id": "6",
       "name": "Я так соскуфился",
       "artist": "Порнофильмы",
       "album": "В диапозоне между отчанием и надеждой",
@@ -54,6 +60,7 @@
       "favorited": false
     },
     {
+      "id": "7",
       "name": "Зомби Апокалипсис",
       "artist": "СЕРЕГА ПИРАТ, qeqoqeq",
       "album": "Зомби Апокалипсис",
@@ -63,6 +70,7 @@
       "favorited": true
     },
     {
+      "id": "8",
       "name": "Тп на аме",
       "artist": "СЕРЕГА ПИРАТ",
       "album": "Тп на аме",
@@ -72,6 +80,7 @@
       "favorited": true
     },
     {
+      "id": "9",
       "name": "SICKO MODE",
       "artist": "Travi$ Scott",
       "album": "SICKO MODE",
@@ -81,6 +90,7 @@
       "favorited": false
     },
     {
+      "id": "10",
       "name": "I Wanna Be Your Dog",
       "artist": "Jhon McCrea",
       "album": "Cruella (Original Motion Picture Soundtrack)",
@@ -90,6 +100,7 @@
       "favorited": false
     },
     {
+      "id": "11",
       "name": "Lose Yourself",
       "artist": "Eminem",
       "album": "Lose Yourself",
@@ -99,6 +110,7 @@
       "favorited": false
     },
     {
+      "id": "12",
       "name": "Mockingbird",
       "artist": "Eminem",
       "album": "Encore",
@@ -108,6 +120,7 @@
       "favorited": true
     },
     {
+      "id": "13",
       "name": "В туалете клуба",
       "artist": "Neverlove",
       "album": "NU GLAM",
@@ -117,6 +130,7 @@
       "favorited": false
     },
     {
+      "id": "14",
       "name": "На заводе",
       "artist": "Neverlove, Йорш",
       "album": "NU GLAM",
@@ -126,6 +140,7 @@
       "favorited": false
     },
     {
+      "id": "15",
       "name": "SLAY",
       "artist": "Neverlove, b3brina",
       "album": "NU GLAM",
