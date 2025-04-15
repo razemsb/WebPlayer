@@ -2,7 +2,7 @@ new Vue({
   el: "#app",
   data() {
     return {
-      albums: [], // Автоматически сгенерируется из треков
+      albums: [], 
       currentAlbum: null,
       trackResults: [],
       albumResults: [],
@@ -32,7 +32,6 @@ new Vue({
     };
   },
   watch: {
-    // Следим за изменениями состояния и сохраняем их
     activeTab(newVal) {
       localStorage.setItem('activeTab', newVal);
     },
@@ -68,28 +67,23 @@ new Vue({
     }
   },
   methods: {
-    // Сохранение состояния
     saveState() {
       if (this.audio) {
         localStorage.setItem('currentTime', this.audio.currentTime);
       }
     },
 
-    // Восстановление состояния
     restoreState() {
-      // Восстанавливаем активную вкладку
       const savedTab = localStorage.getItem('activeTab');
       if (savedTab) {
         this.activeTab = savedTab;
       }
 
-      // Восстанавливаем текущий альбом
       const savedAlbum = localStorage.getItem('currentAlbum');
       if (savedAlbum) {
         this.currentAlbum = JSON.parse(savedAlbum);
       }
 
-      // Восстанавливаем громкость
       const savedVolume = localStorage.getItem('volume');
       if (savedVolume !== null) {
         this.volume = parseFloat(savedVolume);
@@ -98,7 +92,6 @@ new Vue({
         }
       }
 
-      // Восстанавливаем текущий трек и его состояние
       const savedTrack = localStorage.getItem('currentTrack');
       const savedTime = localStorage.getItem('currentTime');
       const wasPlaying = localStorage.getItem('isPlaying') === 'true';
@@ -121,7 +114,6 @@ new Vue({
       }
     },
 
-    // Инициализация
     async loadTracks() {
       try {
         const response = await fetch('temp/api/track.json');
@@ -143,11 +135,9 @@ new Vue({
         this.initRecentTracks();
         this.initAudioPlayer();
         
-        // Сразу инициализируем рекомендации после загрузки треков
         this.trackResults = this.getRandomItems(this.tracks, 5);
         this.albumResults = this.getRandomItems(this.albums, 2);
         
-        // Восстанавливаем состояние после загрузки треков
         this.restoreState();
         
         this.isLoading = false;
@@ -221,7 +211,6 @@ new Vue({
       }));
     },
 
-    // Работа с альбомами
     showAlbumTracks(album) {
       this.currentAlbum = album;
       this.activeTab = 'album-tracks';
@@ -247,7 +236,6 @@ new Vue({
       this.play();
     },
 
-    // Поиск
     searchTracks() {
       if (!this.searchQuery) {
         this.updateRandomSuggestions();
@@ -271,7 +259,6 @@ new Vue({
       this.activeTab = 'search';
       this.searchQuery = artist;
       this.searchTracks();
-      // Предотвращаем воспроизведение текущего трека
       if (this.currentTrack) {
         this.pause();
       }
@@ -281,23 +268,20 @@ new Vue({
       this.activeTab = 'search';
       this.searchQuery = album;
       this.searchTracks();
-      // Предотвращаем воспроизведение текущего трека
       if (this.currentTrack) {
         this.pause();
       }
     },
 
-    // Воспроизведение
     playTrack(trackId) {
       const track = this.tracks.find(t => t.id === trackId);
       if (!track) return;
 
-      // Если это тот же трек
       if (this.currentTrack?.id === trackId) {
         if (this.isPlaying) {
           this.pause();
         } else {
-          // Просто возобновляем воспроизведение без изменения времени
+
           this.audio.play().then(() => {
             this.isPlaying = true;
           }).catch(error => {
@@ -308,9 +292,8 @@ new Vue({
         return;
       }
 
-      // Если это новый трек
       if (this.audio) {
-        // Останавливаем текущий трек если он есть
+
         this.audio.pause();
         this.isPlaying = false;
       }
@@ -318,10 +301,9 @@ new Vue({
       this.currentTrack = track;
       this.currentTrackIndex = this.tracks.indexOf(track);
       this.addToRecent(track);
-      
-      // Загружаем и воспроизводим новый трек
+
       this.audio.src = track.source;
-      this.audio.currentTime = 0; // Сбрасываем время только для нового трека
+      this.audio.currentTime = 0; 
       this.audio.play().then(() => {
         this.isPlaying = true;
       }).catch(error => {
@@ -350,7 +332,6 @@ new Vue({
         if (!this.audio.duration) return;
         this.currentTime = this.formatDuration(this.audio.currentTime);
         this.progressBar = (this.audio.currentTime / this.audio.duration * 100) + '%';
-        // Сохраняем текущее время воспроизведения
         this.saveState();
       });
       
@@ -372,7 +353,6 @@ new Vue({
         this.isPlaying = false;
       });
 
-      // Добавляем обработчик для сохранения состояния при закрытии страницы
       window.addEventListener('beforeunload', () => {
         this.saveState();
       });
@@ -445,7 +425,6 @@ new Vue({
       const rect = event.currentTarget.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const width = rect.width;
-      // Округляем до 2 знаков после запятой для получения 100 шагов (0.01 * 100 = 1)
       this.volume = Math.round(Math.max(0, Math.min(1, x / width)) * 100) / 100;
       if (this.audio) {
         this.audio.volume = this.volume;
@@ -463,7 +442,6 @@ new Vue({
       this.audio.currentTime = time;
     },
 
-    // Вспомогательные методы
     formatCount(count, titles) {
       return `${count} ${this.declension(count, titles)}`;
     },
@@ -480,7 +458,6 @@ new Vue({
     resetPlayer() {
       if (!this.currentTrack || !this.audio) return;
 
-      // Сбрасываем прогресс только если это новый трек
       if (this.audio.src !== this.currentTrack.source) {
         this.progressBar = "0%";
         this.currentTime = "00:00";
@@ -488,7 +465,6 @@ new Vue({
         this.audio.src = this.currentTrack.source;
         this.audio.load();
         
-        // Применяем текущие настройки
         this.audio.volume = this.volume;
         this.audio.loop = this.isRepeat;
       }
@@ -512,7 +488,6 @@ new Vue({
       return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
     },
 
-    // Работа с избранным
     isTrackFavorite(track) {
       return this.favoriteTracks.some(t => t.id === track.id);
     },
@@ -573,7 +548,6 @@ new Vue({
       }
     },
 
-    // Навигация
     switchTab(tabName) {
       this.activeTab = tabName;
       if (tabName === 'search') {
@@ -589,14 +563,12 @@ new Vue({
     },
 
     handleVolumeChange(event) {
-      // Используем значение из range input (0-100) и преобразуем в диапазон 0-1
       this.volume = parseFloat(event.target.value) / 100;
       if (this.audio) {
         this.audio.volume = this.volume;
       }
     },
 
-    // Добавляем новые методы
     getRandomItems(array, count) {
       const shuffled = [...array].sort(() => 0.5 - Math.random());
       return shuffled.slice(0, count);

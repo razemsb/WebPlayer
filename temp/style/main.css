@@ -34,7 +34,6 @@
     color: var(--text-primary);
   }
 
-  /* Основные стили для списка треков */
 .all-tracks {
   margin-top: 24px;
 }
@@ -64,11 +63,13 @@
 }
 
 .header-index {
+  margin-left: 15px;
   width: 35px;
   text-align: center;
 }
 
 .header-title {
+  margin-left: 60px;
   flex: 1;
   padding: 0 8px;
 }
@@ -207,7 +208,6 @@
   text-align: right;
 }
 
-/* Медиа-запросы */
 @media (max-width: 1000px) {
   .tracks-header,
   .track {
@@ -230,7 +230,6 @@
   }
 }
 
-/* Стили для пустого состояния */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -252,7 +251,6 @@
   margin: 0;
 }
 
-/* Стили для альбомов */
 .albums-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -303,7 +301,6 @@
   min-height: 0;
 }
 
-/* Sidebar styles */
 .sidebar {
   width: 240px;
   background-color: var(--sidebar-bg);
@@ -360,7 +357,6 @@
   color: var(--text-primary);
 }
 
-/* Main content styles */
 .content-wrapper {
   flex: 1;
   display: flex;
@@ -422,7 +418,6 @@
     min-height: 0;
   }
   
-  /* Sidebar styles */
   .sidebar {
     width: 240px;
     background-color: var(--sidebar-bg);
@@ -479,7 +474,6 @@
     color: var(--text-primary);
   }
   
-  /* Main content styles */
   .content-wrapper {
     flex: 1;
     display: flex;
@@ -556,7 +550,6 @@
     padding: 0 10px;
   }
   
-  /* Стили для карточек треков */
 .track-card {
   background: var(--card-bg);
   border-radius: 8px;
@@ -637,7 +630,6 @@
   color: white;
 }
 
-/* Адаптивность для карточек */
 @media (max-width: 1200px) {
   .track-card {
     padding: 12px;
@@ -674,7 +666,6 @@
   }
 }
 
-/* Стили для слайдера */
 .recent-tracks {
     margin-bottom: 40px;
   }
@@ -798,7 +789,6 @@
     text-overflow: ellipsis;
   }
   
-  /* Адаптивность */
   @media (max-width: 768px) {
     .track-card {
       flex: 0 0 150px;
@@ -809,7 +799,7 @@
     }
     
     .slider-controls {
-      display: none; /* Скрываем стрелки на мобильных */
+      display: none; 
     }
     
     .tracks-slider-container {
@@ -823,25 +813,23 @@
     }
   }
   
-  /* Адаптивность */
   @media (max-width: 1200px) {
     .track-card {
-      flex: 0 0 calc(25% - 12px); /* 4 карточки */
+      flex: 0 0 calc(25% - 12px); 
     }
   }
   
   @media (max-width: 900px) {
     .track-card {
-      flex: 0 0 calc(33.33% - 12px); /* 3 карточки */
+      flex: 0 0 calc(33.33% - 12px);
     }
   }
   
   @media (max-width: 600px) {
     .track-card {
-      flex: 0 0 calc(50% - 12px); /* 2 карточки */
+      flex: 0 0 calc(50% - 12px); 
     }
   }
-  /* Tracks grid styles */
   .track-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -887,7 +875,6 @@
     color: var(--text-secondary);
   }
   
-  /* Tracks list styles */
   .tracks-list {
     display: flex;
     flex-direction: column;
@@ -1010,7 +997,6 @@
     }
   }
   
-  /* Empty states */
   .empty-state {
     display: flex;
     flex-direction: column;
@@ -1032,7 +1018,6 @@
     margin: 0;
   }
   
-  /* Loading state */
   .loading {
     display: flex;
     flex-direction: column;
@@ -1053,7 +1038,6 @@
     100% { transform: rotate(360deg); }
   }
   
-  /* Player bar styles */
   .player-bar {
     height: var(--player-height);
     background-color: var(--player-bg);
@@ -1144,7 +1128,6 @@
     color: var(--active-color);
   }
   
-  /* Player controls */
   .player-controls {
     display: flex;
     flex-direction: column;
@@ -1267,7 +1250,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  /* Volume controls */
   .player-extra {
     display: flex;
     align-items: center;
@@ -1394,14 +1376,12 @@
     color: var(--progress-active);
   }
   
-  /* Headings */
   h3 {
     font-size: 22px;
     margin-bottom: 20px;
     color: var(--text-primary);
   }
   
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .sidebar {
       width: 70px;
@@ -1440,7 +1420,6 @@
     }
   }
 
-  /* Стили для страницы альбома */
 .album-header {
   display: flex;
   gap: 24px;
@@ -1491,7 +1470,6 @@
   margin-top: 24px;
 }
 
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .album-header {
     flex-direction: column;

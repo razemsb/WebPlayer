@@ -13,7 +13,6 @@
 <body>
   <div id="app">
     <div class="app-container">
-      <!-- Боковая панель -->
       <div class="sidebar">
         <div class="logo">
           <i class="fas fa-music"></i>
@@ -36,7 +35,6 @@
         </div>
       </div>
 
-      <!-- Основное содержимое -->
       <div class="content-wrapper">
         <div class="header">
           <div class="search-bar" v-if="activeTab === 'search'">
@@ -49,7 +47,6 @@
         </div>
 
         <div class="scrollable-content">
-          <!-- Главная страница -->
           <div class="page-content" v-if="activeTab === 'home' && !isLoading">
             <div class="recent-tracks" v-if="recentTracks.length > 0">
               <div class="section-header">
@@ -121,10 +118,8 @@
             </div>
           </div>
 
-          <!-- Страница поиска -->
           <div class="page-content" v-if="activeTab === 'search' && !isLoading">
             <div v-if="searchQuery.length > 0">
-              <!-- Результаты поиска по трекам -->
               <div class="tracks-container">
                 <h3>Результаты поиска</h3>
                 <div class="tracks-header">
@@ -161,7 +156,6 @@
               </div>
             </div>
             <div v-else>
-              <!-- Рекомендации -->
               <div class="recommendations">
                 <div class="tracks-container" v-if="trackResults.length">
                   <h3>Рекомендуемые треки</h3>
@@ -262,7 +256,6 @@
             </div>
           </div>
 
-          <!-- Медиатека -->
           <div class="page-content" v-if="activeTab === 'library'">
             <div class="favorite-tracks">
               <h3>Любимые треки</h3>
@@ -300,7 +293,6 @@
             </div>
           </div>
 
-          <!-- Загрузка -->
           <div class="loading" v-if="isLoading">
             <i class="fas fa-spinner fa-spin"></i>
             <p>Загрузка треков...</p>
@@ -309,7 +301,6 @@
       </div>
     </div>
 
-    <!-- Плеер -->
     <div class="player-bar" v-if="currentTrack && !isLoading">
       <div class="player-info">
         <div class="track-cover">
